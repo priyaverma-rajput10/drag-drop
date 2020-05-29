@@ -1,0 +1,5 @@
+<div cdkDropList [cdkDropListData]="fieldModels" class="example-list" cdkDropListSortingDisabled
+  (cdkDropListDropped)="drop($event)" cdkDropListConnectedTo="canvasRef0">
+  <div class="example-box" *ngFor="let item of fieldModels" cdkDrag>
+    {{item.type}}</div>
+</div>

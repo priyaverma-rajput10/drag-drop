@@ -1,0 +1,22 @@
+<form [formGroup]="controllerform">
+  <div style="display: flex;flex-wrap: wrap;">
+    <div formArrayName="fields" class="example-box"
+      *ngFor="let arrayItem of controllerform['controls']['fields']['controls']; let i=index"
+      [ngStyle]="this.controllerform.controls['fields']['controls'][i]['controls'].style.value">
+      <div [formGroupName]="i">
+        <mat-form-field class="example-full-width"
+          *ngIf="this.controllerform.controls['fields']['controls'][i]['controls'].type.value === 'TEXT'">
+          <input matInput [placeholder]="this.controllerform.controls['fields']['controls'][i]['controls'].label.value"
+            formControlName="desc">
+        </mat-form-field>
+        <mat-form-field class="example-full-width"
+          *ngIf="this.controllerform.controls['fields']['controls'][i]['controls'].type.value === 'TEXTAREA'">
+          <textarea matInput
+            [placeholder]="this.controllerform.controls['fields']['controls'][i]['controls'].label.value"
+            formControlName="desc"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <button (click)="submit()">Submit</button>
+</form>

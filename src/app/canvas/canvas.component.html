@@ -1,0 +1,32 @@
+<button mat-button (click)="modeFor('view')" *ngIf="!isControllerView && canvasItems.length > 0">View Mode</button>
+<div cdkDropListGroup>
+  <div class="example1-container">
+    <h6>Controls</h6>
+    <div id="canvasRef0" cdkDropList [cdkDropListData]="canvasItems" class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box">
+        <div *ngFor="let item of canvasItems;let i=index" cdkDrag [ngStyle]="item.style">
+          <div (click)="controllerData(i)">
+            type: {{item.type}}
+            label: {{item.label}}
+            desc: {{item.desc}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="example1-container" *ngIf="isControllerView">
+  <div [ngSwitch]="controllerObj.type">
+    <app-input-box *ngSwitchCase="'TEXT'" [formObj]="controllerObj.data" (data)="updateFormObj($event)"></app-input-box>
+    <app-textarea *ngSwitchCase="'TEXTAREA'" [formObj]="controllerObj.data" (data)="updateFormObj($event)">
+    </app-textarea>
+    <app-canvas-view *ngSwitchCase="'CANVASVIEW'"
+    [formObj]="controllerObj.data"></app-canvas-view>
+  </div>
+  <button mat-button (click)="modeFor('view')" *ngIf="!isControllerView && canvasItems.length > 0">View Mode</button>
+</div>
+
+

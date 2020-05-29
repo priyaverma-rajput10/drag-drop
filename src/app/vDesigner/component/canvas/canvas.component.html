@@ -1,0 +1,32 @@
+<button mat-button (click)="modeFor('view')" *ngIf="!isControllerView && canvasItems.length > 0">View Mode</button>
+<div class="example1-container" cdkDropListGroup>
+  <div id="canvasRef0" cdkDropList [cdkDropListData]="canvasItems" (cdkDropListDropped)="drop($event)"
+    class="example-box">
+    <mat-card *ngFor="let item of canvasItems;let i=index" cdkDrag [ngStyle]="item.style">
+      <div (click)="controllerData(i)">
+        type: {{item.type}}
+        label: {{item.label}}
+        desc: {{item.desc}}
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+
+<!-- <div [ngStyle]="row.rowStyle" *ngFor="let row of configJson.rows; let rowId=index" id="canvasRef{{rowId}}"
+[fxLayout]="row.fxLayout" [cdkDropListOrientation]="row.cdkDropListOrientation" cdkDropList
+[cdkDropListData]="row.columns" class="example-list" (cdkDropListDropped)="drop($event)" fxLayoutWrap>
+<div [ngStyle]="col.colStyle" (click)="itemSelected(rowId, colId)" [fxFlex]="col.fxFlex" class="example-box"
+  fxFlexOffset="25%" *ngFor="let col of row.columns; let colId=index" cdkDrag>{{col.name}}</div>
+</div> -->
+
+
+<div class="example1-container" *ngIf="isControllerView">
+  <div [ngSwitch]="controllerObj.type">
+    <app-input-box *ngSwitchCase="'TEXT'" [formObj]="controllerObj.data" (data)="updateFormObj($event)"></app-input-box>
+    <app-textarea *ngSwitchCase="'TEXTAREA'" [formObj]="controllerObj.data" (data)="updateFormObj($event)">
+    </app-textarea>
+    <app-canvas-view *ngSwitchCase="'CANVASVIEW'" [formObj]="controllerObj.data"></app-canvas-view>
+  </div>
+  <button mat-button (click)="modeFor('view')" *ngIf="!isControllerView && canvasItems.length > 0">View Mode</button>
+</div>

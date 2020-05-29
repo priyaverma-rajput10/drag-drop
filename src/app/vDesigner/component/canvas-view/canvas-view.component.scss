@@ -1,0 +1,11 @@
+.example-box {
+    padding: 10px 10px;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    font-size: 14px;
+  }
+  .example-box > *,.example-full-width {
+    width: 100%;
+  }

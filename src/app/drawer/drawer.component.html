@@ -1,0 +1,26 @@
+<div cdkDropList [cdkDropListData]="fieldModels" class="example-list" cdkDropListSortingDisabled
+  (cdkDropListDropped)="drop($event)" cdkDropListConnectedTo="canvasRef0">
+  <div class="example-box" *ngFor="let item of fieldModels" cdkDrag>
+    {{item.type}}</div>
+</div>
+
+
+<!-- <div fxLayout="column" fxLayoutGap="0%"
+cdkDropList
+[cdkDropListData]="sideOption"
+[cdkDropListConnectedTo]="['canvasRef0', 'canvasRef1', 'canvasRef2']"
+(cdkDropListDropped)="drop($event)"
+cdkDropListSortingDisabled
+class="example-list">
+
+<div style="cursor:pointer" fxFlex="25%" class="example-box">
+  Add New ROW
+</div>
+
+  <div fxFlex="25%" class="example-box"
+  *ngFor="let item of sideOption"
+  [cdkDragData]="item"
+  cdkDrag>
+    {{item.name}}
+</div>
+</div> -->
